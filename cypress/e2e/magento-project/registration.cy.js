@@ -7,6 +7,16 @@ describe('Verify Registration Functionallity', () => {
       registrationPage.visit()
     })
 
+    // it('Create an Account With Valid Data', () => {
+    //     registrationPage.clickCreateAccount()
+    //     registrationPage.verifyPageTitle()
+    //     cy.fixture('user').then((user) => {
+    //         cy.registerUser(user)
+    //         cy.url().should('eq', 'https://magento.softwaretestingboard.com/customer/account/')
+    //         cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]').should('have.text', 'Thank you for registering with Main Website Store.')
+    //     })
+    // })    
+
     it('Create an Account With Invalid Data', () => {
         registrationPage.clickCreateAccount()
         registrationPage.verifyPageTitle()
@@ -41,14 +51,4 @@ describe('Verify Registration Functionallity', () => {
         cy.get('#password-error').should('have.text','Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.')
         })
     })
-
-    // it('Create an Account With Valid Data', () => {
-    //     registrationPage.clickCreateAccount()
-    //     registrationPage.verifyPageTitle()
-    //     cy.fixture('user').then((user) => {
-    //         cy.registerUser(user)
-    //         cy.url().should('eq', 'https://magento.softwaretestingboard.com/customer/account/')
-    //         cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]').should('have.text', 'Thank you for registering with Main Website Store.')
-    //     })
-    // })
 })
