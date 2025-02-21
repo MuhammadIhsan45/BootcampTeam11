@@ -46,7 +46,4 @@ describe('Verify Login Functionality', () => {
     cy.wait(2000) 
     cy.get('#pass-error').should('be.visible').and('have.text', 'This is a required field.')
   })
-
-
-
 })
