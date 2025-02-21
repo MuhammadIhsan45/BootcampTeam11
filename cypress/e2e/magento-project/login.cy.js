@@ -17,7 +17,7 @@ describe('Verify Login Functionality', () => {
     })
   })
 
-  it('Login with Invalid Email', () => {
+  it('Login with Invalid Format Email', () => {
     loginPage.verifyPageTitle()
     cy.fixture('user').then((user) => {
       user.email = user.invalidEmail
