@@ -43,4 +43,28 @@ Cypress.Commands.add('registerUser', (user) => {
     cy.get('#pass').type(user.password)
     cy.get('#send2').click()
   })
-  
+
+  // Custom command to configure and add product to cart
+Cypress.Commands.add('addProductToCart', (product) => {
+    cy.visit(product.url)
+    cy.get('.page-title').should('contain', product.name)
+    cy.get(`[option-label="${product.size}"]`).click()
+    cy.get(`[option-label="${product.color}"]`).click()
+    cy.get('#qty').clear().type(product.defaultQty)
+    cy.get('#product-addtocart-button').click()
+    cy.get('.message-success').should('be.visible')
+})
+
+// Custom command to handle uncaught exceptions
+Cypress.Commands.add('handleUncaughtException', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
+})
+
+// Custom command to verify error message
+Cypress.Commands.add('verifyErrorMessage', (message) => {
+    cy.get('.message-error, div.mage-error, .modal-content')
+        .should('be.visible')
+        .and('contain', message)
+})

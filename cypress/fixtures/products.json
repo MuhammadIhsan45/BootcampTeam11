@@ -1,0 +1,18 @@
+{
+    "radiantTee": {
+        "name": "Radiant Tee",
+        "size": "XS",
+        "color": "Blue",
+        "defaultQty": "1",
+        "updatedQty": "2",
+        "invalidQty": "0",
+        "excessQty": "99999",
+        "url": "/radiant-tee.html"
+    },
+    "errorMessages": {
+        "requiredField": "This is a required field.",
+        "invalidQty": "Please enter a number greater than 0 in this field.",
+        "excessQty": "The requested qty exceeds the maximum qty",
+        "emptyCart": "You have no items in your shopping cart"
+    }
+}
