@@ -1,5 +1,14 @@
 {
   "devDependencies": {
     "cypress": "^14.0.3"
-  }
+  },
+  "name": "bootcampteam11",
+  "version": "1.0.0",
+  "description": "| Nama                     | GitHub Username                                  |\r | ------------------------ | ---------------------------------------------- |\r | Refo Fattahillah Ramadhan | [refofattahillah](https://github.com/refofattahillah)          |\r | Yota Pratama             | [yotaprt](https://github.com/yotaprt) |\r | Novita                  | [novita-works](https://github.com/novita-works)           |\r | Muhammad Ihsan Syarifudin| [MuhammadIhsan45](https://github.com/MuhammadIhsan45)        |",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
