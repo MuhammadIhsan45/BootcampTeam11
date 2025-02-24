@@ -19,7 +19,7 @@ describe('Shopping Cart Update Test Suite', () => {
 
     it('Should update product quantity in cart', () => {
         CartPage.updateQuantity(product.name, product.updatedQty)
-        cy.wait(1000)
+        // cy.wait(1000)
         CartPage.verifyProductInCart(product.name, product.updatedQty)
     })
 
@@ -30,7 +30,7 @@ describe('Shopping Cart Update Test Suite', () => {
             .as('qtyInput')
             .clear()
             .type('0')
-        
+
         cy.get('.update').click()
 
         cy.get('@qtyInput')
@@ -48,9 +48,9 @@ describe('Shopping Cart Update Test Suite', () => {
             .should('have.value', product.defaultQty)
 
         CartPage.updateQuantity(product.name, product.excessQty)
-        
+
         cy.verifyErrorMessage(errorMessages.excessQty)
-        
+
         CartPage.clickErrorOk()
     })
 

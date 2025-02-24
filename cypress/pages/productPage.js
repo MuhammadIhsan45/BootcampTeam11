@@ -25,7 +25,7 @@ class ProductPage {
             'L': '169',
             'XL': '170'
         }
-        
+
         const sizeValue = sizeMap[size]
         if (!sizeValue) {
             throw new Error(`Invalid size: ${size}`)
@@ -44,16 +44,16 @@ class ProductPage {
             'Orange': '56',
             'Purple': '57'
         }
-        
+
         const colorValue = colorMap[color]
         if (!colorValue) {
             throw new Error(`Invalid color: ${color}`)
         }
 
         cy.get(`#option-label-color-93-item-${colorValue}`).click()
-        
+
         cy.wait(500)
-        
+
         cy.get('[attribute-code="color"]')
             .should('have.attr', 'option-selected', colorValue)
 
@@ -101,7 +101,7 @@ class ProductPage {
     }
 
     verifyConfigurableOptions() {
-        this.elements.configurableOptions().should('have.length', 2) 
+        this.elements.configurableOptions().should('have.length', 2)
         this.elements.sizeOptions().should('be.visible')
         this.elements.colorOptions().should('be.visible')
     }
@@ -155,6 +155,10 @@ class ProductPage {
         this.elements.selectedColor()
             .should('contain', color)
     }
+    radiant_tree = ':nth-child(1) > .product-item-info > .product-item-photo > .product-image-container > .product-image-wrapper > .product-image-photo'
+    selectRadiantTree() {
+        cy.get(this.radiant_tree).click()
+    }
+    radiant_tree = '.base'
 }
-
 export default new ProductPage()

@@ -35,7 +35,7 @@ class CartPage {
             .as('qtyInput')
             .clear()
             .type(quantity)
-        
+
         cy.get('.update').click()
 
         if (quantity === '0') {
@@ -52,7 +52,7 @@ class CartPage {
         this.elements.errorOkButton()
             .should('be.visible')
             .click()
-        
+
         cy.wait(2000)
     }
 
@@ -65,7 +65,7 @@ class CartPage {
 
     verifyProductInCart(productName, quantity) {
         cy.wait(1000)
-        
+
         cy.get('table#shopping-cart-table')
             .contains('tr', productName)
             .find('.input-text.qty')

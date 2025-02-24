@@ -26,13 +26,13 @@ describe('Verify Login Functionality', () => {
     })
   })
 
-//   -- script case ini belum fix -- 
-//   it('Login with Empty Credentials', () => {
-//     loginPage.verifyPageTitle()
-//     cy.get('#send2').click() 
-//     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
-//     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
-//   })
+  //   -- script case ini belum fix -- 
+  //   it('Login with Empty Credentials', () => {
+  //     loginPage.verifyPageTitle()
+  //     cy.get('#send2').click() 
+  //     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
+  //     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
+  //   })
 
   it('Login with Valid Credentials', () => {
     loginPage.verifyPageTitle()

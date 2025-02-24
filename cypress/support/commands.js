@@ -34,19 +34,28 @@ Cypress.Commands.add('registerUser', (user) => {
     cy.get('#password-confirmation').type(user.password)
     cy.get('.action.submit.primary').click()
 
-  })
+})
 
-  // -- Login --
+// -- Login --
 
-  Cypress.Commands.add('login', (user) => {
+Cypress.Commands.add('login', (user) => {
     cy.get('#email').type(user.email)
     cy.get('#pass').type(user.password)
     cy.get('#send2').click()
-  })
+})
 
-  // Custom command to configure and add product to cart
+// Custom command to configure and add product to cart
 Cypress.Commands.add('addProductToCart', (product) => {
     cy.visit(product.url)
+    cy.get('.page-title').should('contain', product.name)
+    cy.get(`[option-label="${product.size}"]`).click()
+    cy.get(`[option-label="${product.color}"]`).click()
+    cy.get('#qty').clear().type(product.defaultQty)
+    cy.get('#product-addtocart-button').click()
+    cy.get('.message-success').should('be.visible')
+})
+
+Cypress.Commands.add('addProductToCart1', (product) => {
     cy.get('.page-title').should('contain', product.name)
     cy.get(`[option-label="${product.size}"]`).click()
     cy.get(`[option-label="${product.color}"]`).click()
@@ -68,3 +77,36 @@ Cypress.Commands.add('verifyErrorMessage', (message) => {
         .should('be.visible')
         .and('contain', message)
 })
+
+
+Cypress.Commands.add('selectSize', (size) => {
+    cy.get('.size')
+        .contains(size)
+        .click()
+})
+
+Cypress.Commands.add('selectColor', (color) => {
+    cy.get('.swatch-attribute.color')
+        .contains(color)
+        .click()
+})
+
+Cypress.Commands.add('inputTextCO', (locator, text) => {
+    cy.get(locator)
+        .clear()
+        .type(text)
+})
+
+Cypress.Commands.add('selectProvince', (locator, provinceName) => {
+    cy.get(locator)
+        .should("be.visible")
+        .select(provinceName)
+})
+
+Cypress.Commands.add('selectCountry', (locator, countryName) => {
+    cy.get(locator)
+        .should("be.visible")
+        .select(countryName)
+})
+
+
