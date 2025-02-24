@@ -13,7 +13,8 @@ describe('Verify Login Functionality', () => {
     cy.fixture('user').then((user) => {
       cy.login(user)
       cy.url().should('eq', 'https://magento.softwaretestingboard.com/customer/account/')
-      cy.get('.box-content').should('contain','Eleven Team','tim11@yopmail.com')
+      cy.get('.box-content')
+      .should('contain','Eleven Team','tim11@yopmail.com')
     })
   })
 
@@ -23,7 +24,8 @@ describe('Verify Login Functionality', () => {
       user.email = user.invalidEmail
       cy.login(user)
       cy.wait(3000)
-      cy.get('.mage-error').should('have.text', 'Please enter a valid email address (Ex: johndoe@domain.com).')
+      cy.get('.mage-error')
+      .should('have.text', 'Please enter a valid email address (Ex: johndoe@domain.com).')
     })
   })
 
@@ -32,18 +34,31 @@ describe('Verify Login Functionality', () => {
     cy.fixture('user').then((user) => {
       user.password = user.invalidPassword
       cy.login(user)
-      cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]').should('contain', 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.')
+      cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]')
+      .should('contain', 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.')
     })
   })
+
+  it('Login With Mismatch Credentials ', () => {
+    loginPage.verifyPageTitle()
+    cy.fixture('user').then((user) => {
+        user.password = user.mismatchPassword
+        cy.login(user)
+      cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]')
+      .should('contain','The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.')
+    })
+})
 
   it('Login with Empty Credentials', () => {
     loginPage.verifyPageTitle()
     cy.get('#email').clear()
     cy.get('#pass').clear()
     cy.get('#send2').click()
-    cy.wait(2000) 
-    cy.get('#email-error').should('be.visible').and('have.text', 'This is a required field.')
-    cy.wait(2000) 
-    cy.get('#pass-error').should('be.visible').and('have.text', 'This is a required field.')
+    cy.wait(3000) 
+    cy.get('#email-error')
+    .should('be.visible').and('have.text', 'This is a required field.')
+    cy.wait(3000) 
+    cy.get('#pass-error')
+    .should('be.visible').and('have.text', 'This is a required field.')
   })
 })
