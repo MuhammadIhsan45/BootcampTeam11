@@ -8,12 +8,22 @@ describe('Verify Login Functionality', () => {
     loginPage.visit()
   })
 
-  it('Login with Invalid Email', () => {
+  it('Login with Valid Credentials', () => {
+    loginPage.verifyPageTitle()
+    cy.fixture('user').then((user) => {
+      cy.login(user)
+      cy.url().should('eq', 'https://magento.softwaretestingboard.com/customer/account/')
+      cy.get('.box-content').should('contain','Eleven Team','tim11@yopmail.com')
+    })
+  })
+
+  it('Login with Invalid Format Email', () => {
     loginPage.verifyPageTitle()
     cy.fixture('user').then((user) => {
       user.email = user.invalidEmail
       cy.login(user)
-      cy.get('.mage-error').should('contain', 'Please enter a valid email address (Ex: johndoe@domain.com).')
+      cy.wait(3000)
+      cy.get('.mage-error').should('have.text', 'Please enter a valid email address (Ex: johndoe@domain.com).')
     })
   })
 
@@ -26,20 +36,14 @@ describe('Verify Login Functionality', () => {
     })
   })
 
-//   -- script case ini belum fix -- 
-//   it('Login with Empty Credentials', () => {
-//     loginPage.verifyPageTitle()
-//     cy.get('#send2').click() 
-//     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
-//     cy.get('.mage-error', { timeout: 10000 }).should('be.visible').and('have.text', 'This is a required field.')
-//   })
-
-  it('Login with Valid Credentials', () => {
+  it('Login with Empty Credentials', () => {
     loginPage.verifyPageTitle()
-    cy.fixture('user').then((user) => {
-      cy.login(user)
-      cy.url().should('eq', 'https://magento.softwaretestingboard.com/customer/account/')
-    })
+    cy.get('#email').clear()
+    cy.get('#pass').clear()
+    cy.get('#send2').click()
+    cy.wait(2000) 
+    cy.get('#email-error').should('be.visible').and('have.text', 'This is a required field.')
+    cy.wait(2000) 
+    cy.get('#pass-error').should('be.visible').and('have.text', 'This is a required field.')
   })
-
 })
