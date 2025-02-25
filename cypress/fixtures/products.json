@@ -13,6 +13,7 @@
         "requiredField": "This is a required field.",
         "invalidQty": "Please enter a number greater than 0 in this field.",
         "excessQty": "The requested qty exceeds the maximum qty",
-        "emptyCart": "You have no items in your shopping cart"
+        "emptyCart": "You have no items in your shopping cart",
+        "emptyFieldNewAddress": "This is a required field."
     }
 }

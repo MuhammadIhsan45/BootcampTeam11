@@ -48,7 +48,8 @@ class checkoutPage {
   }
 
   buttonNextShippingAddress() {
-    cy.get('.button').click()
+    cy.wait(2000); // Tunggu 2 detik (sesuaikan waktu jika perlu)
+    cy.get('button.action-save-address').click();
   }
 
   verifyPaymentMethod() {
@@ -56,28 +57,40 @@ class checkoutPage {
       .should('be.visible')
   }
   buttonPlaceOrder() {
-    cy.get(".checkout")
-      .click()
+    cy.get('.checkout').contains('Place Order').click({ force: true });
+
   }
+  // buttonPlaceOrder1() {
+  //   cy.wait(1000)
+  //   cy.get('.payment-method-content > :nth-child(4) > div.primary > .action')
+  //     .first()
+  //     .click()
+
+  // }
   verifySuccessMessagepurchase(text) {
     cy.get('.base').should('have.text', text)
   }
 
   buttonShipHere() {
-    cy.get(".action-save-address > span")
-      .click()
+    cy.wait(2000); // Tunggu 2 detik (sesuaikan waktu jika perlu)
+    cy.get('button.action-save-address').click();
   }
-
   buttonNewAddress() {
     cy.get(".action-show-popup").click()
   }
 
   unceklistSaveAddress() {
-    cy.get('#shipping-save-in-address-book').uncheck().should('not.be.checked')
+    cy.get('#shipping-save-in-address-book').uncheck().should('not.be.checked').click({ force: true });
   }
 
   buttonNextOrderSummary() {
     cy.get(".button").click()
+  }
+
+  verifyErrorMessage(message) {
+    this.elements.errorMessage()
+      .should('be.visible')
+      .and('contain', message)
   }
 }
 
