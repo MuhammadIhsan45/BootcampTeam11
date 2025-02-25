@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-// -- Register New Account --
+// -- Custom command to register new account Eleven Team --
 
 Cypress.Commands.add('registerUser', (user) => {
     cy.get('#firstname').type(user.firstname)
